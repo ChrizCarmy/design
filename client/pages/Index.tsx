@@ -1,61 +1,66 @@
-import { DemoResponse } from "@shared/api";
-import { useEffect, useState } from "react";
+const PLACEHOLDER_CARDS = Array.from({ length: 12 }, (_, i) => i);
+
+function ObjectCard() {
+  return (
+    <div className="flex min-h-[320px] w-full flex-col overflow-hidden rounded-xl border border-slate-200 bg-white">
+      <div className="flex flex-1 flex-col gap-3 p-4">
+        <div className="flex flex-col gap-1">
+          <h3 className="text-base font-bold text-slate-900">
+            Object Title Placeholder
+          </h3>
+          <p className="text-[13px] text-slate-500">
+            Short description or subtitle placeholder for quick context.
+          </p>
+        </div>
+        <div className="flex flex-col gap-2">
+          <div className="flex items-center justify-between">
+            <span className="text-xs text-slate-400">Status</span>
+            <span className="text-xs font-semibold text-slate-600">
+              Placeholder
+            </span>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="text-xs text-slate-400">Category</span>
+            <span className="text-xs font-semibold text-slate-600">
+              Placeholder
+            </span>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="text-xs text-slate-400">Date</span>
+            <span className="text-xs font-semibold text-slate-600">
+              Placeholder
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function Index() {
-  const [exampleFromServer, setExampleFromServer] = useState("");
-  // Fetch users on component mount
-  useEffect(() => {
-    fetchDemo();
-  }, []);
-
-  // Example of how to fetch data from the server (if needed)
-  const fetchDemo = async () => {
-    try {
-      const response = await fetch("/api/demo");
-      const data = (await response.json()) as DemoResponse;
-      setExampleFromServer(data.message);
-    } catch (error) {
-      console.error("Error fetching hello:", error);
-    }
-  };
-
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200">
-      <div className="text-center">
-        {/* TODO: FUSION_GENERATION_APP_PLACEHOLDER replace everything here with the actual app! */}
-        <h1 className="text-2xl font-semibold text-slate-800 flex items-center justify-center gap-3">
-          <svg
-            className="animate-spin h-8 w-8 text-slate-400"
-            viewBox="0 0 50 50"
-          >
-            <circle
-              className="opacity-30"
-              cx="25"
-              cy="25"
-              r="20"
-              stroke="currentColor"
-              strokeWidth="5"
-              fill="none"
-            />
-            <circle
-              className="text-slate-600"
-              cx="25"
-              cy="25"
-              r="20"
-              stroke="currentColor"
-              strokeWidth="5"
-              fill="none"
-              strokeDasharray="100"
-              strokeDashoffset="75"
-            />
-          </svg>
-          Generating your app...
-        </h1>
-        <p className="mt-4 text-slate-600 max-w-md">
-          Watch the chat on the left for updates that might need your attention
-          to finish generating
-        </p>
-        <p className="mt-4 hidden max-w-md">{exampleFromServer}</p>
+    <div className="flex flex-col items-start gap-6 p-4 sm:p-6 lg:p-8">
+      <div className="flex w-full flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+        <div className="flex flex-col items-start gap-1">
+          <h1 className="text-2xl font-bold text-slate-900">
+            Object Library
+          </h1>
+          <p className="text-sm text-slate-600">
+            A structured placeholder grid for objects, assets, and catalog
+            entries.
+          </p>
+        </div>
+        <div className="flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3.5 py-2.5">
+          <span className="text-[13px] font-semibold text-slate-900">
+            12 Placeholder Cards
+          </span>
+        </div>
+      </div>
+
+      <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
+        {PLACEHOLDER_CARDS.map((i) => (
+          <ObjectCard key={i} />
+        ))}
       </div>
     </div>
   );
